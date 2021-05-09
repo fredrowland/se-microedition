@@ -7,9 +7,11 @@ export default function Home({ data }: any) {
     <Layout location="home">
       <ul>{
         data.allCetei.nodes.map((n: any, i: Number) => 
-          <Link to={`/${n.parent.name}`} key={`l${i}`} >
-            {n.parent.name}
-          </Link>
+          <li>
+            <Link to={`/${n.parent.name}`} key={`l${i}`} >
+              {n.parent.name}
+            </Link>
+          </li>
         )
       }</ul>
     </Layout>
