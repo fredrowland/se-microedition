@@ -59,6 +59,10 @@ const theme = createMuiTheme({
           fontSize: "180%",
           textIndent: "-0.5em",
         },
+        "tei-lb:after": {
+          content: "'\\a'",
+          whiteSpace: "pre"
+        },
         "tei-p": {
           display: "block",
           marginTop: "1em",
