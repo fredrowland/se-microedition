@@ -22,7 +22,7 @@ type Props = {
   location: any
 }
 
-export default function MdlCeteicean({pageContext}: Props) {
+export default function MicroEdCeteicean({pageContext}: Props) {
 
   const routes: Routes = {
     "tei-tei": Tei,
