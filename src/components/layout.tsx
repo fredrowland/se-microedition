@@ -25,6 +25,7 @@ interface Props {
 
 const Main = styled.div(() => ({
   paddingBottom: '1.45rem',
+  minHeight: "60vh",
   "& h2, & h3": {
     paddingBottom: '1rem'
   }
