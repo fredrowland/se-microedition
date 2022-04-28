@@ -1,35 +1,10 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import { navigate, withPrefix } from "gatsby"
-import Grid from "@material-ui/core/Grid"
-import Container from "@material-ui/core/Container"
-import Button from "@material-ui/core/Button"
+import { navigate } from "gatsby"
+import Grid from "@mui/material/Grid"
+import Container from "@mui/material/Container"
+import Button from "@mui/material/Button"
 
 import theme from "../theme"
-
-// Style
-
-const useStyles = makeStyles({
-  nav: {
-    "& div": {
-      padding: "0 2.1rem 0 0",
-    },
-  },
-  navBtn: {
-    borderBottom: "3px solid transparent",
-    borderRadius: 0,
-    boxShadow: "none",
-    "&:hover, &:focus": {
-      backgroundColor: "transparent",
-      borderBottomColor: theme.palette.primary.main,
-    },
-  },
-  active: {
-    borderBottomColor: theme.palette.primary.main,
-  },
-})
-
-// Component
 
 interface Links {
   name: string
@@ -41,24 +16,45 @@ interface Props {
   menuLinks: Links[]
 }
 
+const styles = {
+  nav: {
+    "& div": {
+      padding: "0 2.1rem 0 0",
+    },
+  },
+  navBtn: {
+    borderBottom: "3px solid transparent",
+    borderBottomColor: "transparent",
+    borderRadius: 0,
+    boxShadow: "none",
+    "&:hover, &:focus": {
+      backgroundColor: "transparent",
+      borderBottomColor: theme.palette.primary.main,
+    },
+  },
+}
+
 const Layout = ({ location, menuLinks }: Props) => {
-  const classes = useStyles()
-  const isHome = location.toString() === withPrefix("/")
+  const isHome = location === "intro"
 
   return (
-    <Container maxWidth="md" className={classes.nav}>
+    <Container maxWidth="md" sx={styles.nav}>
       <Grid container={true} component="nav">
         {menuLinks.map(link => {
-          const loc = location.toString().replace(/\/+$/, "")
-          const active =
-            (isHome && link.link === "/") || loc.endsWith(link.link)
-              ? classes.active
-              : ""
+          const active = {
+            borderBottomColor: (isHome && link.link === "/") || location === link.link.replace(/\/+/, "")
+              ? theme.palette.primary.main
+              : "transparent"
+          }
+          
+          const buttonStyle = {...styles.navBtn, ...active}
+
           return (
             <Grid item={true} key={link.name} xs={6} sm="auto" md="auto">
               <Button
+                color="default"
                 size="large"
-                className={`${classes.navBtn} ${active}`}
+                sx={buttonStyle}
                 onClick={() => navigate(link.link)}
               >
                 {link.name}
@@ -68,7 +64,7 @@ const Layout = ({ location, menuLinks }: Props) => {
         })}
       </Grid>
     </Container>
-  )
+  );
 }
 
 export default Layout

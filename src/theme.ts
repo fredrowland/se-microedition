@@ -1,37 +1,54 @@
-import { red } from "@material-ui/core/colors"
-import { createMuiTheme } from "@material-ui/core/styles"
+import { createTheme } from "@mui/material/styles"
+
+// Extend colors and allow extensions on Button
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    default: Palette['primary'];
+  }
+  interface PaletteOptions {
+    default: PaletteOptions['primary'];
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    default: true;
+  }
+}
 
 const mainColor = "#dc3522"
 
 // A custom theme for CETEIcean
-// It is not intended to be comprehensive. The rules here are largely derived from earlier work on TEI Boilerplate  
-const theme = createMuiTheme({
+// It is not intended to be comprehensive; add further rules as needed.
+const theme = createTheme({
   typography: {
     fontFamily: "EB Garamond, Serif",
     body1: {
-      fontSize: "1rem",
-      paddingBottom: "1rem",
+      fontSize: "1.25rem",
+      paddingBottom: "1.25rem",
+    },
+    body2: {
+      fontSize: "1rem"
     },
     subtitle1: {
       fontSize: "1.4rem",
     }
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      "@global": {
+      styleOverrides: {
         "@font-face": [
           {
             fontFamily: "EB Garamond",
             fontStyle: "normal",
             fontDisplay: "swap",
             fontWeight: 400,
+            fontSize: "1.25rem",
           },
         ],
         "a, a:visited, a:hover, a:active": {
           color: mainColor,
-        },
-        body: {
-          color: "#444",
         },
         "h1, h2, h3, h4, h5, h6": {
           color: "#333",
@@ -44,20 +61,17 @@ const theme = createMuiTheme({
         },
         "tei-ab": {
           display: "block",
-          marginTop: "1em",
-          marginBottom: "1em",
+          marginTop: "1.25em",
+          marginBottom: "1.25em",
         },
         "tei-emph": {
           fontStyle: "italic"
         },
         "tei-head": {
           display: "block",
-          fontFamily: "Arvo, sans-serif",
-          fontWeight: "normal"
         },
         "tei-body > tei-head": {
           fontSize: "180%",
-          textIndent: "-0.5em",
         },
         "tei-lb:after": {
           content: "'\\a'",
@@ -65,8 +79,8 @@ const theme = createMuiTheme({
         },
         "tei-p": {
           display: "block",
-          marginTop: "1em",
-          marginBottom: "1em",
+          marginTop: "1.25em",
+          marginBottom: "1.25em",
           textAlign: "justify"
         },
         "tei-q:before": {
@@ -75,23 +89,35 @@ const theme = createMuiTheme({
         "tei-q:after": {
           content: `"”"`
         },
-      },
+      }
     },
   },
   palette: {
+    default: {
+      main: "#444",
+    },
+    text: {
+      primary: "#444",
+    },
     primary: {
       main: mainColor,
     },
     secondary: {
       main: "#fbebda",
     },
-    error: {
-      main: red.A400,
-    },
     background: {
       default: "#fff",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1536,
+    }
+  }
 })
 
 export default theme
