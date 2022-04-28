@@ -40,6 +40,8 @@
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "clean": "gatsby clean",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "metadata": "node scripts/metadata.js",
+    "doi": "node scripts/doi.js"
   }
 }
