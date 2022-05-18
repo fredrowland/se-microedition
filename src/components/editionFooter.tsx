@@ -1,10 +1,9 @@
 import React from "react"
 import Fab from "@mui/material/Fab"
-import makeStyles from '@mui/styles/makeStyles';
 
 import Download from "./Download"
 
-const useStyles = makeStyles({
+const styles = {
   teiFab: {
     position: 'fixed',
     bottom: "1em",
@@ -18,7 +17,7 @@ const useStyles = makeStyles({
   stopFab: {
     bottom: "150px"
   }
-})
+}
 
 interface Props {
   repository: string
@@ -28,7 +27,6 @@ interface Props {
 const EditionFooter = ({children, repository}: Props) => {
   const footerRef = React.useRef<HTMLElement>(null)
   const [stopFab, setStopFab] = React.useState(false)
-  const classes = useStyles() // useStyles(stopFab)
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -47,12 +45,15 @@ const EditionFooter = ({children, repository}: Props) => {
     })
   }, [footerRef])
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
   return (<div {...{ ref: footerRef } as any}>
     <Download open={open} close={() => setOpen(false)} repository={repository}/>
     <Fab size="large" color="secondary" aria-label="Show TEI" 
-        className={stopFab ? `${classes.teiFab} ${classes.stopFab}` : classes.teiFab}
+        sx={{
+          ...styles.teiFab,
+          ...(stopFab && styles.stopFab)
+        }}
         onClick={() => setOpen(true)}>
       <svg height="661" viewBox="0 0 627 661" width="627">
         <path

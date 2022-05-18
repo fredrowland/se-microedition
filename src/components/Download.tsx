@@ -12,7 +12,6 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
 import { Close, Code, FolderOpen, GetApp } from "@mui/icons-material"
 import { navigate } from 'gatsby'
 
@@ -24,18 +23,13 @@ interface Props {
 
 const Download = ({open, close, repository}: Props) => {
 
-  const useStyles = makeStyles(() => ({
+  const styles = {
     dialogTitle: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center"
-    },
-    dialogImage: {
-      marginBottom: "1rem",
-      textAlign: "center"
     }
-  }))
-  const classes = useStyles()  
+  }
 
   return (
     <Dialog
@@ -45,7 +39,7 @@ const Download = ({open, close, repository}: Props) => {
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
-      <DialogTitle id="alert-dialog-slide-title" className={classes.dialogTitle}>
+      <DialogTitle id="alert-dialog-slide-title" sx={styles.dialogTitle}>
         <Typography variant="h6">Download TEI data</Typography>
         <IconButton aria-label="close download dialog" onClick={close} size="large">
           <Close />

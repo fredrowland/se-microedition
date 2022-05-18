@@ -1,8 +1,8 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import makeStyles from '@mui/styles/makeStyles';
 import theme from "../theme"
+import { Box } from "@mui/material"
 
 interface Props {
   description?: string
@@ -11,14 +11,14 @@ interface Props {
   title?: string
 }
 
-const useStyles = makeStyles(() => ({
+const styles = {
   Body: {
     "&& ::selection": { 
       background: theme.palette.primary.main,
       color: theme.palette.secondary.main
     }
   }
-}))
+}
 
 const SEO = ({ description, lang, meta, title }: Props) => {
   const { site } = useStaticQuery(
@@ -40,8 +40,6 @@ const SEO = ({ description, lang, meta, title }: Props) => {
       }
     `
   )
-
-  const classes = useStyles()
 
   const metaDescription = description || site.siteMetadata.description
   const fullTitle = `${title} | ${site.siteMetadata.title} | ${site.siteMetadata.issue.full} | Scholarly Editing` 
@@ -90,7 +88,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
       <link
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
         rel="stylesheet"/>
-      <body className={classes.Body} />
+      <Box component="body" sx={styles.Body} />
     </Helmet>
   )
 }

@@ -1,9 +1,9 @@
 import React from "react"
 import Grid from "@mui/material/Grid"
 import Container from "@mui/material/Container"
-import makeStyles from '@mui/styles/makeStyles';
+import { Box } from "@mui/material"
 
-const useStyles = makeStyles({
+const styles = {
   footer: {
     backgroundColor: "#efefef",
     padding: "1rem 0",
@@ -13,16 +13,14 @@ const useStyles = makeStyles({
   logo: {
     textAlign: "right",
   }
-})
+}
 
 interface Props {
   repository: string
 }
 
-const Footer = ({repository} : Props) => {
-    const classes = useStyles()
-
-  return (<footer className={classes.footer}>
+const Footer = ({repository} : Props) => (
+  <Box component="footer" sx={styles.footer}>
     <Container maxWidth="lg">
       <Grid container={true}>
         <Grid item={true} xs={9}>
@@ -49,7 +47,7 @@ const Footer = ({repository} : Props) => {
           <br /> © {new Date().getFullYear()} Scholarly Editing.
           <br /> ISSN 2167-1257 | DOI <a href="https://doi.org/10.55520/6ZH06EW2">10.55520/6ZH06EW2</a>
         </Grid>
-        <Grid item={true} xs={3} className={classes.logo}>
+        <Grid item={true} xs={3} sx={styles.logo}>
           <a href="http://www.documentaryediting.org">
             <img
               src="https://scholarlyediting.reclaim.hosting/se-archive/template_images/adelogo.png"
@@ -59,7 +57,7 @@ const Footer = ({repository} : Props) => {
         </Grid>
       </Grid>
     </Container>
-  </footer>)
-}
+  </Box>
+)
 
 export default Footer

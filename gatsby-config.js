@@ -17,11 +17,11 @@ module.exports = {
     description: `A Scholarly Editing micro-edition. ${title}. Edited by AUTHORS.`,
     authors: [
       {
-        "first": "FIRST",
-        "middle": "MIDDLE",
-        "last": "LAST",
+        "first": "First",
+        "middle": "M. N.",
+        "last": "Last",
         "affiliations": [
-          "INSTITUTIONS"
+          "Institution"
         ],
         orcid:"0000-0000-0000-0000"
       }
@@ -39,6 +39,7 @@ module.exports = {
     ]
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-material-ui`,
     `gatsby-theme-ceteicean`,
     `gatsby-plugin-image`,
