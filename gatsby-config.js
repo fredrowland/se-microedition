@@ -1,4 +1,4 @@
-const basePath = /se-microedition-template
+const basePath = "/se-microedition-template"
 const title = "Micro-Edition Template"
 const htmlTitle = "Micro-Edition <em>Template</em>"
 
