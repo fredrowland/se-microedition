@@ -8,7 +8,7 @@ module.exports = {
     issue: {
       full: "Example Volume",
       short: "Vol XX",
-      path: "path"
+      path: "/issues/path"
     },
     doi: '10.55520/FAKE',
     group_order: 1, // Oder of this micro-edition in the volume's micro-edition section.

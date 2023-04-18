@@ -48,7 +48,7 @@ const Download = ({open, close, repository}: Props) => {
       <DialogContent>      
         <DialogContentText component="div" id="alert-dialog-slide-description">
           <p>This edition is encoded according to the <a href="https://tei-c.org/">Text Encoding Initiative</a> (TEI) P5 Guidelines.</p>
-          <p>The open source code for this edition is avilable on <a href={repository}>
+          <p>The open source code for this edition is available on <a href={repository}>
               GitLab</a>.</p>
           <List dense>
             <ListItem>
